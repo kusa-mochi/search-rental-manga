@@ -2,35 +2,43 @@
     "sites": [
         {
             "title": "マンガPark",
-            "url": "https://manga-park.com/"
+            "url": "https://manga-park.com/",
+            "id": "mangaPark"
         },
         {
             "title": "マガポケ",
-            "url": "https://pocket.shonenmagazine.com/"
+            "url": "https://pocket.shonenmagazine.com/",
+            "id": "magapoke"
         },
         {
             "title": "サンデーうぇぶり",
-            "url": "https://www.sunday-webry.com/series"
+            "url": "https://www.sunday-webry.com/series",
+            "id": "sundayWebry"
         },
         {
             "title": "少年ジャンプ＋",
-            "url": "https://shonenjumpplus.com/"
+            "url": "https://shonenjumpplus.com/",
+            "id": "jumpPlus"
         },
         {
             "title": "ガンガンONLINE",
-            "url": "https://www.ganganonline.com/"
+            "url": "https://www.ganganonline.com/",
+            "id": "ganganOnline"
         },
         {
             "title": "ゼブラック",
-            "url": "https://zebrack-comic.shueisha.co.jp/"
+            "url": "https://zebrack-comic.shueisha.co.jp/",
+            "id": "zebrack"
         },
         {
             "title": "LINEマンガ",
-            "url": "https://manga.line.me/"
+            "url": "https://manga.line.me/",
+            "id": "lineManga"
         },
         {
             "title": "ピッコマ",
-            "url": "https://piccoma.com/web/"
+            "url": "https://piccoma.com/web/",
+            "id": "piccoma"
         }
     ]
 }
