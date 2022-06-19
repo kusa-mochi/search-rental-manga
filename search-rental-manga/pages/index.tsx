@@ -36,10 +36,12 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+          <div className={styles.footerItems}>
+            <div className={styles.authorName}>
+              Powered by{' '}Mochi
+            </div>
+            <Image src="/slash-mochi.png" alt="Slash Mochi Logo" height={32} width={32} />
+          </div>
         </a>
       </footer>
     </div>
