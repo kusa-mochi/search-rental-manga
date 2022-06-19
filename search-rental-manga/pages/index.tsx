@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Searcher from '../components/organisms/Searcher'
 import styles from '../styles/Home.module.scss'
 
 const Home: NextPage = () => {
@@ -30,19 +31,23 @@ const Home: NextPage = () => {
         </p>
       </main>
 
+      <Searcher></Searcher>
+
       <footer className={styles.footer}>
-        <a
-          href="https://slash-mochi.net/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className={styles.footerItems}>
-            <div className={styles.authorName}>
-              Powered by{' '}Mochi
+        <div className={styles.footerInner}>
+          <a
+            href="https://slash-mochi.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className={styles.footerItems}>
+              <div className={styles.authorName}>
+                Powered by{' '}Mochi
+              </div>
+              <Image src="/slash-mochi.png" alt="Slash Mochi Logo" height={32} width={32} />
             </div>
-            <Image src="/slash-mochi.png" alt="Slash Mochi Logo" height={32} width={32} />
-          </div>
-        </a>
+          </a>
+        </div>
       </footer>
     </div>
   )

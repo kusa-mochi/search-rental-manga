@@ -1,9 +1,13 @@
+@import "../styles/globalParams.scss";
+
 .container {
   padding: 0 2rem;
+  max-width: $pageMaxWidth;
+  margin: 0 auto;
 }
 
 .main {
-  padding: 4rem 0;
+  padding: 4rem 0 0 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -12,12 +16,19 @@
 }
 
 .footer {
+  position: absolute;
+  bottom: 0;
+  width: $pageMaxWidth;
   display: flex;
   flex: 1;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+
+  .footerInner {
+    width: 100%;
+  }
 
   a {
     display: flex;

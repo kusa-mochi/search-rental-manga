@@ -1,0 +1,14 @@
+@import "../../styles/globalParams.scss";
+
+.container {
+    width: $pageMaxWidth;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.inputField {
+    width: 440px;
+}
