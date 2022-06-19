@@ -27,7 +27,6 @@ const Home: NextPage = () => {
 
         <p className={styles.description}>
           複数のマンガレンタルサイトを一括で横断検索します。
-          <code className={styles.code}>pages/index.tsx</code>
         </p>
       </main>
 
