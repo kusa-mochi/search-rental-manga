@@ -14,11 +14,11 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          レンタルマンガ横断検索
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          複数のマンガレンタルサイトを一括で横断検索します。
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
