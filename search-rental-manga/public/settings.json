@@ -1,0 +1,36 @@
+{
+    "sites": [
+        {
+            "title": "マンガPark",
+            "url": "https://manga-park.com/"
+        },
+        {
+            "title": "マガポケ",
+            "url": "https://pocket.shonenmagazine.com/"
+        },
+        {
+            "title": "サンデーうぇぶり",
+            "url": "https://www.sunday-webry.com/series"
+        },
+        {
+            "title": "少年ジャンプ＋",
+            "url": "https://shonenjumpplus.com/"
+        },
+        {
+            "title": "ガンガンONLINE",
+            "url": "https://www.ganganonline.com/"
+        },
+        {
+            "title": "ゼブラック",
+            "url": "https://zebrack-comic.shueisha.co.jp/"
+        },
+        {
+            "title": "LINEマンガ",
+            "url": "https://manga.line.me/"
+        },
+        {
+            "title": "ピッコマ",
+            "url": "https://piccoma.com/web/"
+        }
+    ]
+}
