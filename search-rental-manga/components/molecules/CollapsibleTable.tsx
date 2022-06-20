@@ -1,7 +1,7 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import CollapsibleTableRow from '../atoms/CollapsibleTableRow';
 import '../../types/app.d.ts'
-import './CollapsibleTable.module.scss'
+import styles from './CollapsibleTable.module.scss'
 
 const CollapsibleTable = (props: TableData) => {
     return (

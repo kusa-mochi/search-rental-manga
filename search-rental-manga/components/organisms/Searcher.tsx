@@ -39,13 +39,51 @@ const Searcher = () => {
         {
             siteName: "少年ジャンプ＋",
             number: 35
+        },
+        {
+            siteName: "マンガPark",
+            number: 12
+        },
+        {
+            siteName: "マガポケ",
+            number: 24
+        },
+        {
+            siteName: "少年ジャンプ＋",
+            number: 35
+        },
+        {
+            siteName: "マンガPark",
+            number: 12
+        },
+        {
+            siteName: "マガポケ",
+            number: 24
+        },
+        {
+            siteName: "少年ジャンプ＋",
+            number: 35
+        },
+        {
+            siteName: "マンガPark",
+            number: 12
+        },
+        {
+            siteName: "マガポケ",
+            number: 24
+        },
+        {
+            siteName: "少年ジャンプ＋",
+            number: 35
         }
     ];
     // <-- debugging data
 
     return (
         <div className={styles.container}>
-            <TextField className={styles.inputField} label="マンガのタイトル　作者名　など"></TextField>
+            <div className={styles.textFieldContainer}>
+                <TextField className={styles.inputField} label="マンガのタイトル　作者名　など"></TextField>
+            </div>
             <CollapsibleTable headItems={heads} bodyItems={bodys}></CollapsibleTable>
         </div>
     );

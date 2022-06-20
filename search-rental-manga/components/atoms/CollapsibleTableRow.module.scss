@@ -1,0 +1,10 @@
+@import "../../styles/globalParams.scss";
+
+.summary > * {
+    border-bottom: none;
+}
+
+.detail {
+    padding-top: 0;
+    padding-bottom: 0;
+}

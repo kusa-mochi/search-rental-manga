@@ -2,14 +2,14 @@ import { Collapse, IconButton, TableCell, TableRow } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import React, { useState } from 'react';
-import './CollapsibleTableRow.module.scss';
+import styles from './CollapsibleTableRow.module.scss';
 
 const CollapsibleTableRow = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
     return (
         <React.Fragment>
-            <TableRow>
+            <TableRow className={styles.summary}>
                 <TableCell>
                     <IconButton
                         aria-label="expand row"
@@ -23,7 +23,7 @@ const CollapsibleTableRow = () => {
                 <TableCell>12件</TableCell>
             </TableRow>
             <TableRow>
-                <TableCell>
+                <TableCell className={styles.detail} colSpan={3}>
                     <Collapse in={open}>
                         スパイファミリー　アプリを開く
                     </Collapse>
