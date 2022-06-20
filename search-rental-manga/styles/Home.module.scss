@@ -15,41 +15,6 @@
   align-items: center;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: $pageMaxWidth;
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-
-  .footerInner {
-    width: 100%;
-  }
-
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-  }
-
-  .footerItems {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .authorName {
-    margin-right: 8px;
-  }
-}
-
 .title {
   margin: 0;
   line-height: 1.15;
@@ -70,6 +35,23 @@
 .title,
 .description {
   text-align: center;
+}
+
+.author {
+  width: 100%;
+}
+
+.authorInner {
+  margin-right: 18px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+
+  .poweredBy {
+    margin-right: 8px;
+  }
 }
 
 .description {

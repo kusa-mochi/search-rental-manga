@@ -25,30 +25,19 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           レンタルマンガ横断検索
         </h1>
-
-        <p className={styles.description}>
-          複数のマンガレンタルサイトを一括で横断検索します。
-        </p>
-      </main>
-
-      <Searcher></Searcher>
-
-      <footer className={styles.footer}>
-        <div className={styles.footerInner}>
-          <a
-            href="https://slash-mochi.net/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className={styles.footerItems}>
-              <div className={styles.authorName}>
-                Powered by{' '}Mochi
-              </div>
+        <div className={styles.author}>
+          <a href="https://slash-mochi.net" target="_blank" rel="noopener noreferrer">
+            <div className={styles.authorInner}>
+              <div className={styles.poweredBy}>Powered by Mochi</div>
               <Image src="/slash-mochi.png" alt="Slash Mochi Logo" height={32} width={32} />
             </div>
           </a>
         </div>
-      </footer>
+        <p className={styles.description}>
+          複数のマンガレンタルサイトを一括で横断検索します。
+        </p>
+      </main>
+      <Searcher></Searcher>
     </div>
   )
 }
