@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import styles from './CollapsibleTableRow.module.scss';
 
 const CollapsibleTableRow = () => {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
 
     return (
         <React.Fragment>
