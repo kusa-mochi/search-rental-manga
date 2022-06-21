@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Searcher from '../components/organisms/Searcher'
 import styles from '../styles/Home.module.scss'
 
@@ -29,7 +28,7 @@ const Home: NextPage = () => {
           <a href="https://slash-mochi.net" target="_blank" rel="noopener noreferrer">
             <div className={styles.authorInner}>
               <div className={styles.poweredBy}>Powered by Mochi</div>
-              <Image src="/slash-mochi.png" alt="Slash Mochi Logo" height={32} width={32} />
+              <img src="/slash-mochi.png" alt="Slash Mochi Logo" height={32} width={32} />
             </div>
           </a>
         </div>
