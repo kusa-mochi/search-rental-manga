@@ -7,7 +7,7 @@ const CollapsibleTable = (props: TableData) => {
     return (
         <TableContainer component={Paper}>
             <Table>
-                <TableHead>
+                <TableHead className={styles.tableHead}>
                     <TableRow>
                         <TableCell></TableCell>
                         {
