@@ -1,7 +1,7 @@
 @import "../../styles/globalParams.scss";
 
 .container {
-    width: $pageMaxWidth;
+    max-width: $pageMaxWidth;
     display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;

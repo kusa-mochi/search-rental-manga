@@ -47,34 +47,6 @@ const Searcher = () => {
         {
             siteName: "マガポケ",
             number: 24
-        },
-        {
-            siteName: "少年ジャンプ＋",
-            number: 35
-        },
-        {
-            siteName: "マンガPark",
-            number: 12
-        },
-        {
-            siteName: "マガポケ",
-            number: 24
-        },
-        {
-            siteName: "少年ジャンプ＋",
-            number: 35
-        },
-        {
-            siteName: "マンガPark",
-            number: 12
-        },
-        {
-            siteName: "マガポケ",
-            number: 24
-        },
-        {
-            siteName: "少年ジャンプ＋",
-            number: 35
         }
     ];
     // <-- debugging data
