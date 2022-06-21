@@ -2,8 +2,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Searcher from '../components/organisms/Searcher'
 import styles from '../styles/Home.module.scss'
+import settings from '../public/settings.json'
 
 const Home: NextPage = () => {
+
+  console.log(settings.sites);
+
   return (
     <div className={styles.container}>
       <Head>
