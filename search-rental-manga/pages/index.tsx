@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import '../types/app.d.ts'
 import Head from 'next/head'
 import Searcher from '../components/organisms/Searcher'
 import styles from '../styles/Home.module.scss'
@@ -6,7 +7,8 @@ import settings from '../public/settings.json'
 
 const Home: NextPage = () => {
 
-  console.log(settings.sites);
+  console.log(settings);
+  const appSettings: AppSettings = settings;
 
   return (
     <div className={styles.container}>
@@ -40,7 +42,7 @@ const Home: NextPage = () => {
           複数のマンガレンタルサイトを一括で横断検索します。
         </p>
       </main>
-      <Searcher></Searcher>
+      <Searcher siteSettings={appSettings.sites}></Searcher>
     </div>
   )
 }

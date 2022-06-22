@@ -3,8 +3,13 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import React, { useState } from 'react';
 import styles from './CollapsibleTableRow.module.scss';
+import '../../types/app.d.ts';
 
-const CollapsibleTableRow = () => {
+type CollapsibleTableRowInput = {
+    rowData: BodyItem
+}
+
+const CollapsibleTableRow = (props: CollapsibleTableRowInput) => {
     const [open, setOpen] = React.useState(false);
 
     return (
@@ -19,8 +24,8 @@ const CollapsibleTableRow = () => {
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell>サンデーうぇぶり</TableCell>
-                <TableCell>12件</TableCell>
+                <TableCell>{props.rowData.siteName}</TableCell>
+                <TableCell>{props.rowData.number}件</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell className={styles.detail} colSpan={3}>

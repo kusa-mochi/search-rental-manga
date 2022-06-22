@@ -3,7 +3,12 @@ import CollapsibleTableRow from '../atoms/CollapsibleTableRow';
 import '../../types/app.d.ts'
 import styles from './CollapsibleTable.module.scss'
 
-const CollapsibleTable = (props: TableData) => {
+type CollapsibleTableInput = {
+    headItems: Array<HeadItem>;
+    bodyItems: Array<BodyItem>;
+};
+
+const CollapsibleTable = (props: CollapsibleTableInput) => {
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -20,7 +25,7 @@ const CollapsibleTable = (props: TableData) => {
                 <TableBody>
                     {
                         props.bodyItems.map(item => (
-                            <CollapsibleTableRow key={item.siteName}></CollapsibleTableRow>
+                            <CollapsibleTableRow key={item.siteName} rowData={item}></CollapsibleTableRow>
                         ))
                     }
                 </TableBody>

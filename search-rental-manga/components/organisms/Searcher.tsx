@@ -3,7 +3,12 @@ import CollapsibleTable from '../molecules/CollapsibleTable'
 import '../../types/app.d.ts'
 import styles from './Searcher.module.scss'
 
-const Searcher = () => {
+type SearcherInput = {
+    siteSettings: SiteSettings[];
+}
+
+const Searcher = (props: SearcherInput) => {
+
     // debugging data -->
     const heads: Array<HeadItem> = [
         {
@@ -15,41 +20,14 @@ const Searcher = () => {
             columnId: "number"
         }
     ];
-    const bodys = [
-        {
-            siteName: "マンガPark",
-            number: 12
-        },
-        {
-            siteName: "マガポケ",
-            number: 24
-        },
-        {
-            siteName: "少年ジャンプ＋",
-            number: 35
-        },
-        {
-            siteName: "マンガPark",
-            number: 12
-        },
-        {
-            siteName: "マガポケ",
-            number: 24
-        },
-        {
-            siteName: "少年ジャンプ＋",
-            number: 35
-        },
-        {
-            siteName: "マンガPark",
-            number: 12
-        },
-        {
-            siteName: "マガポケ",
-            number: 24
-        }
-    ];
-    // <-- debugging data
+
+    const bodys: Array<BodyItem> = [];
+    props.siteSettings.forEach(site => {
+        bodys.push({
+            siteName: site.title,
+            number: 0
+        });
+    });
 
     return (
         <div className={styles.container}>
