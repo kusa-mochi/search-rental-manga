@@ -18,4 +18,10 @@ type BodyItem = {
     number: number;
 };
 
+type MangaItem = {
+    title: string;
+    url: string;
+    id: number;
+}
+
 export as namespace AppTypes;
