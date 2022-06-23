@@ -7,7 +7,6 @@ import settings from '../public/settings.json'
 
 const Home: NextPage = () => {
 
-  console.log(settings);
   const appSettings: AppSettings = settings;
 
   return (
