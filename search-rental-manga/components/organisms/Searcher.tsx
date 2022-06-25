@@ -29,10 +29,14 @@ const Searcher = (props: SearcherInput) => {
         });
     });
 
+    function StartSearch() {
+        console.log("あばばばｂ");
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.textFieldContainer}>
-                <TextField className={styles.inputField} label="マンガのタイトル　作者名　など"></TextField>
+                <TextField className={styles.inputField} label="マンガのタイトル　作者名　など" onKeyDown={StartSearch}></TextField>
             </div>
             <CollapsibleTable headItems={heads} bodyItems={bodys}></CollapsibleTable>
         </div>
