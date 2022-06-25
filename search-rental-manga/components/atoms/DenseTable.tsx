@@ -8,11 +8,11 @@ type DenseTableInput = {
 
 const DenseTable = (props: DenseTableInput) => {
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                <TableHead>
+        <TableContainer component={Paper} className={styles.tableContainer}>
+            <Table size="small" aria-label="a dense table">
+                <TableHead className={styles.tableHead}>
                     <TableRow>
-                        <TableCell>タイトル</TableCell>
+                        <TableCell className={styles.tableHeadCell}>タイトル</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
@@ -25,7 +25,7 @@ const DenseTable = (props: DenseTableInput) => {
                             <TableCell component="th" scope="row">
                                 {manga.title}
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="right">
                                 <Button href={manga.url} variant="contained">読む</Button>
                             </TableCell>
                         </TableRow>

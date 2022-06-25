@@ -1,6 +1,16 @@
+@import "../../styles/globalParams.scss";
+
 .bodyRow {
     &:last-child td,
     &:last-child th {
         border: 0;
     }
+}
+
+.tableHead {
+    background-color: $primaryDark;
+}
+
+.tableHeadCell {
+    color: $primaryContrastText;
 }
