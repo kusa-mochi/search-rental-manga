@@ -1,7 +1,8 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import CollapsibleTableRow from '../atoms/CollapsibleTableRow';
-import '../../types/app.d.ts'
-import styles from './CollapsibleTable.module.scss'
+import '../../types/app.d.ts';
+import theme from "../../theme";
+import styles from "./CollapsibleTable.module.scss";
 
 type CollapsibleTableInput = {
     headItems: Array<HeadItem>;
@@ -17,7 +18,7 @@ const CollapsibleTable = (props: CollapsibleTableInput) => {
                         <TableCell></TableCell>
                         {
                             props.headItems.map(item => (
-                                <TableCell key={item.columnId}>{item.title}</TableCell>
+                                <TableCell key={item.columnId} className={styles.tableHeadCell}>{item.title}</TableCell>
                             ))
                         }
                     </TableRow>

@@ -1,5 +1,10 @@
 @import "../../styles/globalParams.scss";
 
 .tableHead {
-    background-color: $tableHeadColor;
+    background-color: $primaryDark;
+}
+
+.tableHeadCell {
+    color: $primaryContrastText;
+    font-size: 1rem;
 }
