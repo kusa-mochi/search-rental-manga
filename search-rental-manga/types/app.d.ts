@@ -24,4 +24,14 @@ type MangaItem = {
     id: number;
 }
 
+type SearchResultItem = {
+    title: string;
+    url: string;
+}
+
+type SearchResult = {
+    count: number;
+    mangaList: SearchResultItem[];
+}
+
 export as namespace AppTypes;
