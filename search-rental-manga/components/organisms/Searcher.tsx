@@ -34,10 +34,12 @@ const Searcher = (props: SearcherInput) => {
 
     function StartSearch(e) {
         if (e.code !== "Enter") return;
+        const query: string = e.target.value;
+        console.log(`query: ${query}`);
         const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
         props.siteSettings.forEach(site => {
             const searcher: IMangaSearcher = searcherFactory.Create(site.id);
-            const result: SearchResult = searcher.Search(site);
+            const result: SearchResult = searcher.Search(query, site);
             console.log(result);
         });
     }

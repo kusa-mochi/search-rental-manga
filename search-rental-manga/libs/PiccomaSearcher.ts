@@ -3,7 +3,8 @@ import { IMangaSearcher } from "./IMangaSearcher";
 import {sites} from "../public/settings.json";
 
 export class PiccomaSearcher implements IMangaSearcher {
-    Search(site: SiteSettings): SearchResult {
+    Search(query: string, site: SiteSettings): SearchResult {
+
         return {
             count: 123,
             mangaList: [
