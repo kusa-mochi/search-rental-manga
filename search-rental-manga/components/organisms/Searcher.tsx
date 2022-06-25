@@ -1,7 +1,10 @@
 import { TextField } from '@mui/material'
 import CollapsibleTable from '../molecules/CollapsibleTable'
+import { MangaSearcherFactory } from "../../libs/MangaSearcherFactory"
 import '../../types/app.d.ts'
 import styles from './Searcher.module.scss'
+import { IMangaSearcher } from '../../libs/IMangaSearcher'
+import { KeyboardEventHandler } from 'react'
 
 type SearcherInput = {
     siteSettings: SiteSettings[];
@@ -29,8 +32,14 @@ const Searcher = (props: SearcherInput) => {
         });
     });
 
-    function StartSearch() {
-        console.log("あばばばｂ");
+    function StartSearch(e) {
+        if (e.code !== "Enter") return;
+        const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
+        props.siteSettings.forEach(site => {
+            const searcher: IMangaSearcher = searcherFactory.Create(site.id);
+            const result: SearchResult = searcher.Search(site);
+            console.log(result);
+        });
     }
 
     return (

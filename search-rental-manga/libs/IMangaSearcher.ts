@@ -1,5 +1,5 @@
-import "../types/app";
+import "../types/app.d.ts";
 
 export interface IMangaSearcher{
-    Search(query: string): SearchResult;
+    Search(site: SiteSettings): SearchResult;
 }

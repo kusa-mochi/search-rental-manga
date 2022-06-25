@@ -1,8 +1,9 @@
-import "../types/app";
+import "../types/app.d.ts";
 import { IMangaSearcher } from "./IMangaSearcher";
+import {sites} from "../public/settings.json";
 
 export class PiccomaSearcher implements IMangaSearcher {
-    Search(query: string): SearchResult {
+    Search(site: SiteSettings): SearchResult {
         return {
             count: 123,
             mangaList: [
