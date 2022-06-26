@@ -35,9 +35,9 @@ const Searcher = (props: SearcherInput) => {
         console.log(`query: ${query}`);
         const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
         const newBodys: BodyItem[] = [];
-        props.siteSettings.forEach(site => {
+        props.siteSettings.forEach(async site => {
             const searcher: IMangaSearcher = searcherFactory.Create(site.id);
-            const result: SearchResult = searcher.Search(query, site);
+            const result: SearchResult = await searcher.Search(query, site);
             newBodys.push({
                 siteName: site.title,
                 number: result.mangaList.length,

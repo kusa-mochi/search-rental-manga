@@ -4,12 +4,12 @@ import { sites } from "../public/settings.json";
 import axios from "axios";
 
 export class PiccomaSearcher implements IMangaSearcher {
-    Search(query: string, site: SiteSettings): SearchResult {
+    async Search(query: string, site: SiteSettings): Promise<SearchResult> {
         const output: SearchResult = {
             mangaList: []
         };
 
-        axios.post('https://2x3l3tl4c5jsxzplozj6mahgtq0iscls.lambda-url.ap-northeast-1.on.aws/', {
+        await axios.post('https://2x3l3tl4c5jsxzplozj6mahgtq0iscls.lambda-url.ap-northeast-1.on.aws/', {
             url: `https://piccoma.com/web/search/result?word=${query}`
         }).then(response => {
             const doc = new DOMParser().parseFromString(response.data, "text/html");
