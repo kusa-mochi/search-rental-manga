@@ -40,7 +40,7 @@ const Searcher = (props: SearcherInput) => {
             const result: SearchResult = searcher.Search(query, site);
             newBodys.push({
                 siteName: site.title,
-                number: result.count,
+                number: result.mangaList.length,
                 mangaList: result.mangaList
             });
             setBodys(newBodys);

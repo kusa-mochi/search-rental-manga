@@ -31,7 +31,6 @@ type BodyItem = {
 // }
 
 type SearchResult = {
-    count: number;
     mangaList: MangaItem[];
 }
 

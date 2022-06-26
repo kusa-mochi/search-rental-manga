@@ -11,45 +11,7 @@ type CollapsibleTableRowInput = {
 }
 
 const CollapsibleTableRow = (props: CollapsibleTableRowInput) => {
-    const [open, setOpen] = React.useState(false);
-
-    const dummyData: MangaItem[] = [
-        {
-            title: "あばばば",
-            url: "https://slash-mochi.net/",
-            id: 0
-        },
-        {
-            title: "あばばば",
-            url: "https://slash-mochi.net/",
-            id: 1
-        },
-        {
-            title: "あばばば",
-            url: "https://slash-mochi.net/",
-            id: 2
-        },
-        {
-            title: "あばばば",
-            url: "https://slash-mochi.net/",
-            id: 3
-        },
-        {
-            title: "あばばば",
-            url: "https://slash-mochi.net/",
-            id: 4
-        },
-        {
-            title: "あばばば",
-            url: "https://slash-mochi.net/",
-            id: 5
-        },
-        {
-            title: "あばばば",
-            url: "https://slash-mochi.net/",
-            id: 6
-        }
-    ];
+    const [open, setOpen] = useState(false);
 
     return (
         <React.Fragment>
@@ -64,12 +26,12 @@ const CollapsibleTableRow = (props: CollapsibleTableRowInput) => {
                     </IconButton>
                 </TableCell>
                 <TableCell>{props.rowData.siteName}</TableCell>
-                <TableCell>{props.rowData.number}件</TableCell>
+                <TableCell>{props.rowData.mangaList.length}件</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell className={styles.detail} colSpan={3}>
                     <Collapse in={open}>
-                        <DenseTable data={dummyData}></DenseTable>
+                        <DenseTable data={props.rowData.mangaList}></DenseTable>
                     </Collapse>
                 </TableCell>
             </TableRow>

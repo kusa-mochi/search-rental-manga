@@ -6,7 +6,6 @@ import axios from "axios";
 export class PiccomaSearcher implements IMangaSearcher {
     Search(query: string, site: SiteSettings): SearchResult {
         const output: SearchResult = {
-            count: 0,
             mangaList: []
         };
 
@@ -19,15 +18,13 @@ export class PiccomaSearcher implements IMangaSearcher {
 
             let titleNode = titleIterator.iterateNext();
             let urlNode = urlIterator.iterateNext();
-            let mangaId = 0;
+            let count = 0;
             while (titleNode && urlNode) {
                 output.mangaList.push({
                     title: titleNode.textContent == null ? "＜タイトル不明＞" : titleNode.textContent,
                     url: urlNode.textContent == null ? "#" : `https://piccoma.com${urlNode.textContent}`,
-                    id: mangaId
+                    id: count++
                 });
-                output.count++;
-                mangaId++;
                 titleNode = titleIterator.iterateNext();
                 urlNode = urlIterator.iterateNext();
             }
