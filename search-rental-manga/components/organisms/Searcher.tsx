@@ -11,12 +11,6 @@ type SearcherInput = {
 }
 
 const Searcher = (props: SearcherInput) => {
-
-    // TODO: only for test
-    while(props.siteSettings.length > 2) {
-        props.siteSettings.pop();
-    }
-
     const [heads, setHeads] = useState<HeadItem[]>([
         {
             title: "漫画アプリ",

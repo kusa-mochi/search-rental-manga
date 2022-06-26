@@ -1,6 +1,5 @@
 import "../types/app.d.ts";
 import { IMangaSearcher } from "./IMangaSearcher";
-import axios from "axios";
 import { BasicSearcher } from "./BasicSearcher";
 
 export class MangaParkSearcher implements IMangaSearcher {
