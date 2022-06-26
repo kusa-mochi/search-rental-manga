@@ -13,7 +13,7 @@ type SearcherInput = {
 const Searcher = (props: SearcherInput) => {
 
     // TODO: only for test
-    while(props.siteSettings.length > 1) {
+    while(props.siteSettings.length > 2) {
         props.siteSettings.pop();
     }
 
@@ -29,22 +29,27 @@ const Searcher = (props: SearcherInput) => {
     ]);
     const [bodys, setBodys] = useState<BodyItem[]>([]);
 
-    function StartSearch(e) {
+
+
+    async function StartSearch(e) {
         if (e.code !== "Enter") return;
         const query: string = e.target.value;
         console.log(`query: ${query}`);
         const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
         const newBodys: BodyItem[] = [];
-        props.siteSettings.forEach(async site => {
+        for(let iSite = 0; iSite < props.siteSettings.length; iSite++) {
+        // props.siteSettings.forEach(async site => {
+            const site = props.siteSettings[iSite];
             const searcher: IMangaSearcher = searcherFactory.Create(site.id);
             const result: SearchResult = await searcher.Search(query, site);
+            console.log(result);
             newBodys.push({
                 siteName: site.title,
                 number: result.mangaList.length,
                 mangaList: result.mangaList
             });
-            setBodys(newBodys);
-        });
+        }
+        setBodys(newBodys);
     }
 
     return (

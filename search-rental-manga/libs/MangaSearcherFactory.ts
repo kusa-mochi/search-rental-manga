@@ -1,12 +1,13 @@
 import { IMangaSearcher } from "./IMangaSearcher";
 import { PiccomaSearcher } from "./PiccomaSearcher";
+import { MangaParkSearcher } from "./MangaParkSearcher";
 import "../types/app.d.ts";
 
 export class MangaSearcherFactory {
     Create(siteId: string): IMangaSearcher {
         switch (siteId) {
             case "mangaPark":
-                return new PiccomaSearcher();   // TODO
+                return new MangaParkSearcher();
             case "magapoke":
                 return new PiccomaSearcher();   // TODO
             case "sundayWebry":
