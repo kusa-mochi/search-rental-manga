@@ -26,7 +26,7 @@ const DenseTable = (props: DenseTableInput) => {
                                 {manga.title}
                             </TableCell>
                             <TableCell align="right">
-                                <Button href={manga.url} variant="contained">読む</Button>
+                                <Button href={manga.url} variant="contained" target="_blank">読む</Button>
                             </TableCell>
                         </TableRow>
                     ))}
