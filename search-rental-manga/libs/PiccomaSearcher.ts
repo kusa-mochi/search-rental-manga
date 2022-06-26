@@ -5,43 +5,37 @@ import axios from "axios";
 
 export class PiccomaSearcher implements IMangaSearcher {
     Search(query: string, site: SiteSettings): SearchResult {
+        const output: SearchResult = {
+            count: 0,
+            mangaList: []
+        };
+
         axios.post('https://2x3l3tl4c5jsxzplozj6mahgtq0iscls.lambda-url.ap-northeast-1.on.aws/', {
             url: `https://piccoma.com/web/search/result?word=${query}`
         }).then(response => {
-            // console.log(response.data);
             const doc = new DOMParser().parseFromString(response.data, "text/html");
-            // const iterator = doc.evaluate('//ul[@id="js_infScroll"]/li[@class="PCM-slotProducts_list"]//div[@class="PCM-productCoverImage_title"]/span', doc, null, XPathResult.STRING_TYPE, null);//doc.getElementById("js_infScroll");
-            const iterator = doc.evaluate('//ul[@id="js_infScroll"]//div[@class="PCM-productCoverImage_title"]/span', doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);//doc.getElementById("js_infScroll");
-            const nextItem = iterator.iterateNext();
-            console.log(nextItem?.textContent);
+            const titleIterator = doc.evaluate('//ul[@id="js_infScroll"]//div[@class="PCM-productCoverImage_title"]/span', doc, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+            const urlIterator = doc.evaluate('//ul[@id="js_infScroll"]//a[contains(@class, "PCM-product js_hoverDescription")]/@href', doc, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+
+            let titleNode = titleIterator.iterateNext();
+            let urlNode = urlIterator.iterateNext();
+            let mangaId = 0;
+            while (titleNode && urlNode) {
+                output.mangaList.push({
+                    title: titleNode.textContent == null ? "＜タイトル不明＞" : titleNode.textContent,
+                    url: urlNode.textContent == null ? "#" : `https://piccoma.com${urlNode.textContent}`,
+                    id: mangaId
+                });
+                output.count++;
+                mangaId++;
+                titleNode = titleIterator.iterateNext();
+                urlNode = urlIterator.iterateNext();
+            }
         }).catch(error => {
             console.log("error occured.");
             console.log(error);
         });
-        return {
-            count: 123,
-            mangaList: [
-                {
-                    title: "てすてす",
-                    url: "https://slash-mochi.net/"
-                },
-                {
-                    title: "てすてす",
-                    url: "https://slash-mochi.net/"
-                },
-                {
-                    title: "てすてす",
-                    url: "https://slash-mochi.net/"
-                },
-                {
-                    title: "てすてす",
-                    url: "https://slash-mochi.net/"
-                },
-                {
-                    title: "てすてす",
-                    url: "https://slash-mochi.net/"
-                }
-            ]
-        };
+
+        return output;
     }
 }

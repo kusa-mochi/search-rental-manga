@@ -13,25 +13,26 @@ type HeadItem = {
     columnId: string;
 };
 
-type BodyItem = {
-    siteName: string;
-    number: number;
-};
-
 type MangaItem = {
     title: string;
     url: string;
     id: number;
 }
 
-type SearchResultItem = {
-    title: string;
-    url: string;
-}
+type BodyItem = {
+    siteName: string;
+    number: number;
+    mangaList: MangaItem[];
+};
+
+// type SearchResultItem = {
+//     title: string;
+//     url: string;
+// }
 
 type SearchResult = {
     count: number;
-    mangaList: SearchResultItem[];
+    mangaList: MangaItem[];
 }
 
 export as namespace AppTypes;
