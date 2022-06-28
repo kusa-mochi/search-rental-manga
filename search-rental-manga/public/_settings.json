@@ -1,31 +1,6 @@
 {
     "sites": [
         {
-            "title": "ピッコマ",
-            "url": "https://piccoma.com/web/",
-            "id": "piccoma"
-        },
-        {
-            "title": "マンガPark",
-            "url": "https://manga-park.com/",
-            "id": "mangaPark"
-        },
-        {
-            "title": "マガポケ",
-            "url": "https://pocket.shonenmagazine.com/",
-            "id": "magapoke"
-        },
-        {
-            "title": "サンデーうぇぶり",
-            "url": "https://www.sunday-webry.com/series",
-            "id": "sundayWebry"
-        },
-        {
-            "title": "少年ジャンプ＋",
-            "url": "https://shonenjumpplus.com/",
-            "id": "jumpPlus"
-        },
-        {
             "title": "ガンガンONLINE",
             "url": "https://www.ganganonline.com/",
             "id": "ganganOnline"
