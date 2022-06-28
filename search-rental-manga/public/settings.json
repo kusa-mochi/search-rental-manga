@@ -19,6 +19,11 @@
             "title": "少年ジャンプ＋",
             "url": "https://shonenjumpplus.com/",
             "id": "jumpPlus"
+        },
+        {
+            "title": "サンデーうぇぶり",
+            "url": "https://www.sunday-webry.com/series",
+            "id": "sundayWebry"
         }
     ],
     "proxyUrl": "https://2x3l3tl4c5jsxzplozj6mahgtq0iscls.lambda-url.ap-northeast-1.on.aws/"
