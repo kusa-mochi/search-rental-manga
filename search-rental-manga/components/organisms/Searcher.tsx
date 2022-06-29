@@ -32,8 +32,11 @@ const Searcher = (props: SearcherInput) => {
         const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
         const newBodys: BodyItem[] = [];
         for(let iSite = 0; iSite < props.siteSettings.length; iSite++) {
-        // props.siteSettings.forEach(async site => {
             const site = props.siteSettings[iSite];
+            
+            // TODO: only for debugging
+            if(site.id !== "zebrack") continue;
+
             const searcher: IMangaSearcher = searcherFactory.Create(site.id);
             const result: SearchResult = await searcher.Search(query, site);
             console.log(result);
