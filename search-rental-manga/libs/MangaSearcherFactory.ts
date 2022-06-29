@@ -6,6 +6,8 @@ import { MagapokeSearcher } from "./MagapokeSearcher";
 import { JumpPlusSearcher } from "./JumpPlusSearcher";
 import { SundayWebrySearcher } from "./SundayWebrySearcher";
 import { GanganOnlineSearcher } from "./GanganOnlineSearcher";
+import { ZebrackSearcher } from "./ZebrackSearcher";
+import { LineMangaSearcher } from "./LineMangaSearcher";
 
 export class MangaSearcherFactory {
     Create(siteId: string): IMangaSearcher {
@@ -21,14 +23,13 @@ export class MangaSearcherFactory {
             case "ganganOnline":
                 return new GanganOnlineSearcher();
             case "zebrack":
-                return new PiccomaSearcher();   // TODO
+                return new ZebrackSearcher();
             case "lineManga":
-                return new PiccomaSearcher();   // TODO
+                return new LineMangaSearcher();
             case "piccoma":
                 return new PiccomaSearcher();
             default:
-                // TODO: change to exception ?
-                return new PiccomaSearcher();
+                throw "no searchar is found.";
         }
     }
 }
