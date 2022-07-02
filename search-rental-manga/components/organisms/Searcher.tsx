@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { Box, CircularProgress, TextField } from '@mui/material'
 import CollapsibleTable from '../molecules/CollapsibleTable'
 import { MangaSearcherFactory } from "../../libs/MangaSearcherFactory"
 import '../../types/app.d.ts'
@@ -22,6 +22,7 @@ const Searcher = (props: SearcherInput) => {
             columnId: "number"
         }
     ]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const initialBodyItems: BodyItem[] = [];
     const sites: SiteSettings[] = settings.sites;
@@ -37,6 +38,7 @@ const Searcher = (props: SearcherInput) => {
 
     async function StartSearch(e) {
         if (e.code !== "Enter") return;
+        setIsLoading(true);
         const query: string = e.target.value;
         console.log(`query: ${query}`);
         const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
@@ -54,6 +56,7 @@ const Searcher = (props: SearcherInput) => {
             });
         }
         setBodys(newBodys);
+        setIsLoading(false);
     }
 
     return (
@@ -62,6 +65,11 @@ const Searcher = (props: SearcherInput) => {
                 <TextField className={styles.inputField} label="マンガのタイトル　作者名　など" onKeyDown={StartSearch}></TextField>
             </div>
             <CollapsibleTable headItems={heads} bodyItems={bodys}></CollapsibleTable>
+            <div className={isLoading === true ? styles.loadingMask : styles.hidden}>
+                <div className={styles.progressContainer}>
+                    <CircularProgress color="primary" />
+                </div>
+            </div>
         </div>
     );
 };
