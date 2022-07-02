@@ -5,7 +5,7 @@ import '../../types/app.d.ts'
 import styles from './Searcher.module.scss'
 import settings from "../../public/settings.json"
 import { IMangaSearcher } from '../../libs/IMangaSearcher'
-import { KeyboardEvent, useState } from 'react'
+import { KeyboardEvent, useState, ChangeEvent } from 'react'
 
 type SearcherInput = {
     siteSettings: SiteSettings[];
@@ -39,7 +39,7 @@ const Searcher = (props: SearcherInput) => {
     const [inputString, setInputString] = useState<string>("");
     const [composing, setComposing] = useState<boolean>(false);
 
-    function OnInputChange(e) {
+    function OnInputChange(e: ChangeEvent<HTMLInputElement>) {
         setInputString(e.target.value);
     }
 
@@ -75,7 +75,7 @@ const Searcher = (props: SearcherInput) => {
             });
     }
 
-    async function StartSearch(e) {
+    async function StartSearch(e: KeyboardEvent<HTMLElement>) {
         if (e.code !== "Enter" || composing === true) return;
         StartSearchByButton();
     }
