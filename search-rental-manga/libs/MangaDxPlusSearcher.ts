@@ -4,6 +4,7 @@ import { BasicSearcher } from "./BasicSearcher";
 
 export class MangaDxPlusSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
+        console.log(`start searching @ ${this.constructor.name}`);
         const searcher = new BasicSearcher();
         const tmpResult = await searcher.Search(
             `https://mangadx-plus.com/`,
@@ -21,6 +22,7 @@ export class MangaDxPlusSearcher implements IMangaSearcher {
                 result.mangaList.push(manga);
             }
         });
+        console.log(`fin searching @ ${this.constructor.name}`);
         return result;
     }
 }

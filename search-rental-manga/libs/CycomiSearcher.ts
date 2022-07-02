@@ -4,6 +4,7 @@ import { BasicSearcher } from "./BasicSearcher";
 
 export class CycomiSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
+        console.log(`start searching @ ${this.constructor.name}`);
         const searcher = new BasicSearcher();
         const searchUrlPrefix: string = "https://cycomi.com/fw/cycomibrowser/title/serialization/";
         const searchUrls: string[] = [];
@@ -36,6 +37,7 @@ export class CycomiSearcher implements IMangaSearcher {
                 }
             });
         });
+        console.log(`fin searching @ ${this.constructor.name}`);
         return result;
     }
 }

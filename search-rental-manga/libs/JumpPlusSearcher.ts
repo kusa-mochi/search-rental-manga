@@ -4,6 +4,7 @@ import { BasicSearcher } from "./BasicSearcher";
 
 export class JumpPlusSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
+        console.log(`start searching @ ${this.constructor.name}`);
         const searcher = new BasicSearcher();
         const result = await searcher.Search(
             `https://shonenjumpplus.com/search?q=${query}`,
@@ -12,6 +13,7 @@ export class JumpPlusSearcher implements IMangaSearcher {
             ''
         );
         result.siteName = site.title;
+        console.log(`fin searching @ ${this.constructor.name}`);
         return result;
     }
 }

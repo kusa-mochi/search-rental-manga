@@ -7,6 +7,7 @@ import { BasicSearcher } from "./BasicSearcher";
 // read it yet.
 export class ZebrackSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
+        console.log(`start searching @ ${this.constructor.name}`);
         const searcher = new BasicSearcher();
         const result = await searcher.Search(
             `https://zebrack-comic.shueisha.co.jp/search?keyword=${query}`,
@@ -28,6 +29,7 @@ export class ZebrackSearcher implements IMangaSearcher {
         });
         result.mangaList = newList;
         result.siteName = site.title;
+        console.log(`fin searching @ ${this.constructor.name}`);
         return result;
     }
 }

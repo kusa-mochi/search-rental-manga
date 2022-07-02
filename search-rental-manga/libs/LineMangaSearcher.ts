@@ -6,6 +6,7 @@ import { BasicSearcher } from "./BasicSearcher";
 // the manga site treats this as an access from overseas and denies access.
 export class LineMangaSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
+        console.log(`start searching @ ${this.constructor.name}`);
         const searcher = new BasicSearcher();
         const result = await searcher.Search(
             `https://manga.line.me/search_product/list?word=${query}`,
@@ -14,6 +15,7 @@ export class LineMangaSearcher implements IMangaSearcher {
             'https://manga.line.me'
         );
         result.siteName = site.title;
+        console.log(`fin searching @ ${this.constructor.name}`);
         return result;
     }
 }

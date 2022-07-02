@@ -4,6 +4,7 @@ import { BasicSearcher } from "./BasicSearcher";
 
 export class MangaParkSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
+        console.log(`start searching @ ${this.constructor.name}`);
         const searcher = new BasicSearcher();
         const result = await searcher.Search(
             `https://manga-park.com/search/freeword?key=${query}`,
@@ -12,6 +13,7 @@ export class MangaParkSearcher implements IMangaSearcher {
             'https://manga-park.com'
         );
         result.siteName = site.title;
+        console.log(`fin searching @ ${this.constructor.name}`);
         return result;
     }
 }
