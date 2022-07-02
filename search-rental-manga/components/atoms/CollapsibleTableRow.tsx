@@ -1,4 +1,4 @@
-import { Collapse, IconButton, TableCell, TableRow } from '@mui/material';
+import { Chip, Collapse, IconButton, TableCell, TableRow } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import React, { useState } from 'react';
@@ -25,7 +25,12 @@ const CollapsibleTableRow = (props: CollapsibleTableRowInput) => {
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell>{props.rowData.siteName}</TableCell>
+                <TableCell>
+                    <div className={styles.siteNameContainer}>
+                        <div>{props.rowData.siteName}</div>
+                        <Chip className={`${styles.errorBadge} ${props.rowData.error != null ? "" : styles.hidden}`} label="エラー" size="small"></Chip>
+                    </div>
+                </TableCell>
                 <TableCell>{props.rowData.mangaList.length}件</TableCell>
             </TableRow>
             <TableRow>

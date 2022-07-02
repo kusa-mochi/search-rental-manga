@@ -12,3 +12,21 @@
 .error {
     background-color: #ffa4a4;
 }
+
+.errorBadge {
+    color: white;
+    background-color: #b82424;
+    margin-left: 16px;
+}
+
+.siteNameContainer {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.hidden {
+    display: none;
+}
