@@ -1,7 +1,6 @@
 import "../types/app.d.ts";
 import { IMangaSearcher } from "./IMangaSearcher";
 import { BasicSearcher } from "./BasicSearcher";
-import { stringify } from "querystring";
 
 export class CycomiSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
