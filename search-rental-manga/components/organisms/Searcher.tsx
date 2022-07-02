@@ -43,18 +43,6 @@ const Searcher = (props: SearcherInput) => {
         console.log(`query: ${query}`);
         const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
         const newBodys: BodyItem[] = [];
-        // for (let iSite = 0; iSite < props.siteSettings.length; iSite++) {
-        //     // props.siteSettings.forEach(async site => {
-        //     const site = props.siteSettings[iSite];
-        //     const searcher: IMangaSearcher = searcherFactory.Create(site.id);
-        //     const result: SearchResult = await searcher.Search(query, site);
-        //     console.log(result);
-        //     newBodys.push({
-        //         siteName: site.title,
-        //         number: result.mangaList.length,
-        //         mangaList: result.mangaList
-        //     });
-        // }
         const threads: Promise<SearchResult>[] = [];
         for (let iSite = 0; iSite < props.siteSettings.length; iSite++) {
             const site = props.siteSettings[iSite];

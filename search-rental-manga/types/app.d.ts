@@ -25,11 +25,6 @@ type BodyItem = {
     mangaList: MangaItem[];
 };
 
-// type SearchResultItem = {
-//     title: string;
-//     url: string;
-// }
-
 type SearchResult = {
     siteName: string;
     mangaList: MangaItem[];
