@@ -22,7 +22,6 @@ const Home: NextPage = () => {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
