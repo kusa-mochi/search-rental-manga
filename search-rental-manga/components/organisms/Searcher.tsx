@@ -55,7 +55,8 @@ const Searcher = (props: SearcherInput) => {
                     const newBodyItem: BodyItem = {
                         siteName: currentResult.siteName,
                         number: currentResult.mangaList.length,
-                        mangaList: currentResult.mangaList
+                        mangaList: currentResult.mangaList,
+                        error: currentResult.error
                     };
                     newBodys.push(newBodyItem);
                 });

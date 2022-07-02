@@ -11,7 +11,8 @@ export class BasicSearcher {
     ): Promise<SearchResult> {
         const output: SearchResult = {
             siteName: "",
-            mangaList: []
+            mangaList: [],
+            error: null
         };
 
         await axios.post(settings.proxyUrl, {
@@ -36,6 +37,9 @@ export class BasicSearcher {
         }).catch(error => {
             console.log("error occured.");
             console.log(error);
+            output.error = error.message;
+        }).finally(() => {
+            return output;
         });
 
         return output;

@@ -15,7 +15,7 @@ const CollapsibleTableRow = (props: CollapsibleTableRowInput) => {
 
     return (
         <React.Fragment>
-            <TableRow className={styles.summary}>
+            <TableRow className={`${styles.summary} ${props.rowData.error != null ? styles.error : ""}`}>
                 <TableCell>
                     <IconButton
                         aria-label="expand row"

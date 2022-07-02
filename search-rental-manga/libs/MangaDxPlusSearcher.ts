@@ -15,8 +15,15 @@ export class MangaDxPlusSearcher implements IMangaSearcher {
 
         const result: SearchResult = {
             siteName: site.title,
-            mangaList: []
+            mangaList: [],
+            error: null
         };
+        
+        if(tmpResult.error != null) {
+            result.error = tmpResult.error;
+            return result;
+        }
+
         tmpResult.mangaList.forEach(manga => {
             if (manga.title.indexOf(query) !== -1) {
                 result.mangaList.push(manga);

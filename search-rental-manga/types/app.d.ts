@@ -23,11 +23,13 @@ type BodyItem = {
     siteName: string;
     number: number;
     mangaList: MangaItem[];
+    error: string | null;
 };
 
 type SearchResult = {
     siteName: string;
     mangaList: MangaItem[];
+    error: string | null;
 }
 
 export as namespace AppTypes;
