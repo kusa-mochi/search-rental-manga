@@ -32,7 +32,7 @@ const Home: NextPage = () => {
           <a href="https://slash-mochi.net" target="_blank" rel="noopener noreferrer">
             <div className={styles.authorInner}>
               <div className={styles.poweredBy}>Powered by Mochi</div>
-              <img src="/slash-mochi.png" alt="Slash Mochi Logo" height={32} width={32} />
+              <img src="slash-mochi.png" alt="Slash Mochi Logo" height={32} width={32} />
             </div>
           </a>
         </div>
