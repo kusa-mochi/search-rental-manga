@@ -1,10 +1,10 @@
 import "../types/app.d.ts";
 import { IMangaSearcher } from "./IMangaSearcher";
-import { BasicSearcher } from "./BasicSearcher";
+import { DynamicSearcher } from "./DynamicSearcher";
 
 export class ZebrackSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
-        const searcher = new BasicSearcher();
+        const searcher = new DynamicSearcher();
         const result = await searcher.Search(
             `https://zebrack-comic.shueisha.co.jp/search?keyword=${query}`,
             '//div[@class="react-swipeable-view-container"]//p[contains(@class, "sc-kDTinF")]',

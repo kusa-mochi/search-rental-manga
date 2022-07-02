@@ -41,5 +41,6 @@
             "id": "lineManga"
         }
     ],
-    "proxyUrl": "https://2x3l3tl4c5jsxzplozj6mahgtq0iscls.lambda-url.ap-northeast-1.on.aws/"
+    "proxyUrl": "https://2x3l3tl4c5jsxzplozj6mahgtq0iscls.lambda-url.ap-northeast-1.on.aws/",
+    "dynamicSiteProxyUrl": "https://zekneohoolp2ec543otv726tjq0taqmc.lambda-url.ap-northeast-1.on.aws/"
 }
