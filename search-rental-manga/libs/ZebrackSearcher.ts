@@ -27,6 +27,7 @@ export class ZebrackSearcher implements IMangaSearcher {
             newList.push(newItem);
         });
         result.mangaList = newList;
+        result.siteName = site.title;
         return result;
     }
 }

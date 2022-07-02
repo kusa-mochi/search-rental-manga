@@ -13,6 +13,7 @@ export class LineMangaSearcher implements IMangaSearcher {
             '//div[@class="LyMain"]//li[@class="mdCMN07Li"]/a/@href',
             'https://manga.line.me'
         );
+        result.siteName = site.title;
         return result;
     }
 }

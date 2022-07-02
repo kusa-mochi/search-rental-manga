@@ -11,6 +11,7 @@ export class GanganOnlineSearcher implements IMangaSearcher {
             '//div[@id="__next"]//main[contains(@class, "Base_main")]//a[contains(@class, "SearchTitle_title")]/@href',
             'https://www.ganganonline.com'
         );
+        result.siteName = site.title;
         return result;
     }
 }

@@ -13,6 +13,7 @@ export class MangaDxPlusSearcher implements IMangaSearcher {
         );
 
         const result: SearchResult = {
+            siteName: site.title,
             mangaList: []
         };
         tmpResult.mangaList.forEach(manga => {

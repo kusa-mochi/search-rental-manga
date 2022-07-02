@@ -26,6 +26,7 @@ export class CycomiSearcher implements IMangaSearcher {
         ]);
 
         const result: SearchResult = {
+            siteName: site.title,
             mangaList: []
         };
         results.forEach(res => {

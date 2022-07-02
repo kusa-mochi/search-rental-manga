@@ -43,20 +43,40 @@ const Searcher = (props: SearcherInput) => {
         console.log(`query: ${query}`);
         const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
         const newBodys: BodyItem[] = [];
+        // for (let iSite = 0; iSite < props.siteSettings.length; iSite++) {
+        //     // props.siteSettings.forEach(async site => {
+        //     const site = props.siteSettings[iSite];
+        //     const searcher: IMangaSearcher = searcherFactory.Create(site.id);
+        //     const result: SearchResult = await searcher.Search(query, site);
+        //     console.log(result);
+        //     newBodys.push({
+        //         siteName: site.title,
+        //         number: result.mangaList.length,
+        //         mangaList: result.mangaList
+        //     });
+        // }
+        const threads: Promise<SearchResult>[] = [];
         for (let iSite = 0; iSite < props.siteSettings.length; iSite++) {
-            // props.siteSettings.forEach(async site => {
             const site = props.siteSettings[iSite];
             const searcher: IMangaSearcher = searcherFactory.Create(site.id);
-            const result: SearchResult = await searcher.Search(query, site);
-            console.log(result);
-            newBodys.push({
-                siteName: site.title,
-                number: result.mangaList.length,
-                mangaList: result.mangaList
-            });
+            threads.push(searcher.Search(query, site));
         }
-        setBodys(newBodys);
-        setIsLoading(false);
+        Promise.all(threads)
+            .then(results => {
+                results.forEach(currentResult => {
+                    const newBodyItem: BodyItem = {
+                        siteName: currentResult.siteName,
+                        number: currentResult.mangaList.length,
+                        mangaList: currentResult.mangaList
+                    };
+                    newBodys.push(newBodyItem);
+                });
+                setBodys(newBodys);
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+                setIsLoading(false);
+            });
     }
 
     return (

@@ -11,6 +11,7 @@ export class MagapokeSearcher implements IMangaSearcher {
             '//ul[@class="series-list"]//div[@class="thmb-container"]/a/@href',
             ''
         );
+        result.siteName = site.title;
         return result;
     }
 }

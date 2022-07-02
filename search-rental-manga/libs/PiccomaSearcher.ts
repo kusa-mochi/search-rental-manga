@@ -11,6 +11,7 @@ export class PiccomaSearcher implements IMangaSearcher {
             '//ul[@id="js_infScroll"]//a[contains(@class, "PCM-product js_hoverDescription")]/@href',
             'https://piccoma.com'
         );
+        result.siteName = site.title;
         return result;
     }
 }

@@ -10,6 +10,7 @@ export class BasicSearcher {
         urlPrefix: string
     ): Promise<SearchResult> {
         const output: SearchResult = {
+            siteName: "",
             mangaList: []
         };
 

@@ -31,6 +31,7 @@ type BodyItem = {
 // }
 
 type SearchResult = {
+    siteName: string;
     mangaList: MangaItem[];
 }
 

@@ -11,6 +11,7 @@ export class MangaParkSearcher implements IMangaSearcher {
             '//div[@class="search-result"]/ul[@class="common-list pc-only"]//a/@href',
             'https://manga-park.com'
         );
+        result.siteName = site.title;
         return result;
     }
 }
