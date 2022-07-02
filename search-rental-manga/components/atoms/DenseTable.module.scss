@@ -1,5 +1,9 @@
 @import "../../styles/globalParams.scss";
 
+.tableContainer {
+    margin-bottom: 16px;
+}
+
 .bodyRow {
     &:last-child td,
     &:last-child th {
