@@ -2,6 +2,8 @@ import "../types/app.d.ts";
 import { IMangaSearcher } from "./IMangaSearcher";
 import { BasicSearcher } from "./BasicSearcher";
 
+// TODO: This implementation has not been completed because
+// the manga site treats this as an access from overseas and denies access.
 export class LineMangaSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
         const searcher = new BasicSearcher();

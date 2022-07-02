@@ -2,6 +2,9 @@ import "../types/app.d.ts";
 import { IMangaSearcher } from "./IMangaSearcher";
 import { BasicSearcher } from "./BasicSearcher";
 
+// TODO: This implementation has not been completed because
+// the manga site renders the HTML dynamically but this tool has not supported to 
+// read it yet.
 export class ZebrackSearcher implements IMangaSearcher {
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
         const searcher = new BasicSearcher();
