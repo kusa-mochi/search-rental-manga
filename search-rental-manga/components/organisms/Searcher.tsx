@@ -30,7 +30,8 @@ const Searcher = (props: SearcherInput) => {
         initialBodyItems.push({
             siteName: site.title,
             number: 0,
-            mangaList: []
+            mangaList: [],
+            error: null
         });
     });
 
