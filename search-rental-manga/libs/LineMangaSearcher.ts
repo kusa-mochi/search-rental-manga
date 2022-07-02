@@ -7,8 +7,8 @@ export class LineMangaSearcher implements IMangaSearcher {
         const searcher = new BasicSearcher();
         const result = await searcher.Search(
             `https://manga.line.me/search_product/list?word=${query}`,
-            '//section[@class="ArMain01"]//span[@class="mdCMN07Ttl"]',
-            '//section[@class="ArMain01"]//li[@class="mdCMN07Li"]/a/@href',
+            '//div[@class="LyMain"]//span[@class="mdCMN07Ttl"]',
+            '//div[@class="LyMain"]//li[@class="mdCMN07Li"]/a/@href',
             'https://manga.line.me'
         );
         return result;
