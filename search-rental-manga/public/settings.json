@@ -29,6 +29,11 @@
             "title": "ガンガンONLINE",
             "url": "https://www.ganganonline.com/",
             "id": "ganganOnline"
+        },
+        {
+            "title": "コミックDAYS",
+            "url": "https://comic-days.com/",
+            "id": "comicDays"
         }
     ],
     "proxyUrl": "https://2x3l3tl4c5jsxzplozj6mahgtq0iscls.lambda-url.ap-northeast-1.on.aws/"

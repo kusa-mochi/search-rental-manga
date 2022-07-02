@@ -8,6 +8,7 @@ import { SundayWebrySearcher } from "./SundayWebrySearcher";
 import { GanganOnlineSearcher } from "./GanganOnlineSearcher";
 import { ZebrackSearcher } from "./ZebrackSearcher";
 import { LineMangaSearcher } from "./LineMangaSearcher";
+import { ComicDaysSearcher } from "./ComicDaysSearcher";
 
 export class MangaSearcherFactory {
     Create(siteId: string): IMangaSearcher {
@@ -28,6 +29,8 @@ export class MangaSearcherFactory {
                 return new LineMangaSearcher();
             case "piccoma":
                 return new PiccomaSearcher();
+            case "comicDays":
+                return new ComicDaysSearcher();
             default:
                 throw "no searchar is found.";
         }
