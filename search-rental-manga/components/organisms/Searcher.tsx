@@ -1,11 +1,11 @@
-import { Box, CircularProgress, TextField } from '@mui/material'
+import { Box, Button, CircularProgress, TextField } from '@mui/material'
 import CollapsibleTable from '../molecules/CollapsibleTable'
 import { MangaSearcherFactory } from "../../libs/MangaSearcherFactory"
 import '../../types/app.d.ts'
 import styles from './Searcher.module.scss'
 import settings from "../../public/settings.json"
 import { IMangaSearcher } from '../../libs/IMangaSearcher'
-import { KeyboardEventHandler, useState } from 'react'
+import { KeyboardEvent, useState } from 'react'
 
 type SearcherInput = {
     siteSettings: SiteSettings[];
@@ -36,9 +36,10 @@ const Searcher = (props: SearcherInput) => {
     });
 
     const [bodys, setBodys] = useState<BodyItem[]>(initialBodyItems);
+    const [composing, setComposing] = useState<boolean>(false);
 
     async function StartSearch(e) {
-        if (e.code !== "Enter") return;
+        if (e.code !== "Enter" || composing === true) return;
         setIsLoading(true);
         const query: string = e.target.value;
         console.log(`query: ${query}`);
@@ -69,10 +70,19 @@ const Searcher = (props: SearcherInput) => {
             });
     }
 
+    function OnCompositionStart() {
+        setComposing(true);
+    }
+
+    function OnCompositionEnd() {
+        setComposing(false);
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.textFieldContainer}>
-                <TextField className={styles.inputField} label="マンガのタイトル　作者名　など" onKeyDown={StartSearch}></TextField>
+                <TextField className={styles.inputField} label="マンガのタイトル　作者名　など" onKeyDown={StartSearch} onCompositionStart={OnCompositionStart} onCompositionEnd={OnCompositionEnd}></TextField>
+                <Button className={styles.searchButton} variant="contained">検索</Button>
             </div>
             <CollapsibleTable headItems={heads} bodyItems={bodys}></CollapsibleTable>
             <div className={isLoading === true ? styles.loadingMask : styles.hidden}>
