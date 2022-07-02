@@ -3,6 +3,7 @@ import CollapsibleTable from '../molecules/CollapsibleTable'
 import { MangaSearcherFactory } from "../../libs/MangaSearcherFactory"
 import '../../types/app.d.ts'
 import styles from './Searcher.module.scss'
+import settings from "../../public/settings.json"
 import { IMangaSearcher } from '../../libs/IMangaSearcher'
 import { KeyboardEventHandler, useState } from 'react'
 
@@ -21,9 +22,18 @@ const Searcher = (props: SearcherInput) => {
             columnId: "number"
         }
     ]);
-    const [bodys, setBodys] = useState<BodyItem[]>([]);
 
+    const initialBodyItems: BodyItem[] = [];
+    const sites: SiteSettings[] = settings.sites;
+    sites.forEach(site => {
+        initialBodyItems.push({
+            siteName: site.title,
+            number: 0,
+            mangaList: []
+        });
+    });
 
+    const [bodys, setBodys] = useState<BodyItem[]>(initialBodyItems);
 
     async function StartSearch(e) {
         if (e.code !== "Enter") return;
@@ -31,8 +41,8 @@ const Searcher = (props: SearcherInput) => {
         console.log(`query: ${query}`);
         const searcherFactory: MangaSearcherFactory = new MangaSearcherFactory();
         const newBodys: BodyItem[] = [];
-        for(let iSite = 0; iSite < props.siteSettings.length; iSite++) {
-        // props.siteSettings.forEach(async site => {
+        for (let iSite = 0; iSite < props.siteSettings.length; iSite++) {
+            // props.siteSettings.forEach(async site => {
             const site = props.siteSettings[iSite];
             const searcher: IMangaSearcher = searcherFactory.Create(site.id);
             const result: SearchResult = await searcher.Search(query, site);
