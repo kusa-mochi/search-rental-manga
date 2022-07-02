@@ -91,8 +91,8 @@ const Searcher = (props: SearcherInput) => {
     return (
         <div className={styles.container}>
             <div className={styles.textFieldContainer}>
-                <TextField className={styles.inputField} label="マンガのタイトル　作者名　など" value={inputString} onChange={OnInputChange} onKeyDown={StartSearch} onCompositionStart={OnCompositionStart} onCompositionEnd={OnCompositionEnd}></TextField>
-                <Button className={styles.searchButton} variant="contained" color="primary" onClick={StartSearchByButton}>検索</Button>
+                <TextField className={styles.inputField} label="マンガのタイトル　作者名　など" value={inputString} disabled={isLoading} onChange={OnInputChange} onKeyDown={StartSearch} onCompositionStart={OnCompositionStart} onCompositionEnd={OnCompositionEnd}></TextField>
+                <Button className={styles.searchButton} variant="contained" color="primary" disabled={isLoading} onClick={StartSearchByButton}>検索</Button>
             </div>
             <CollapsibleTable headItems={heads} bodyItems={bodys}></CollapsibleTable>
             <div className={isLoading === true ? styles.loadingMask : styles.hidden}>
