@@ -97,7 +97,11 @@ const Searcher = (props: SearcherInput) => {
             <CollapsibleTable headItems={heads} bodyItems={bodys}></CollapsibleTable>
             <div className={isLoading === true ? styles.loadingMask : styles.hidden}>
                 <div className={styles.progressContainer}>
-                    <CircularProgress color="primary" />
+                    <span className={styles.progress}>
+                        <svg className={styles.progressSvg} viewBox="22 22 44 44">
+                            <circle className={styles.progressCircle} cx="44" cy="44" r="20.2" fill="none" strokeWidth="4.0"></circle>
+                        </svg>
+                    </span>
                 </div>
             </div>
         </div>
