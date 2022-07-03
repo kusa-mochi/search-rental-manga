@@ -1,11 +1,11 @@
-import { Box, Button, CircularProgress, TextField } from '@mui/material'
-import CollapsibleTable from '../molecules/CollapsibleTable'
-import { MangaSearcherFactory } from "../../libs/MangaSearcherFactory"
+import { KeyboardEvent, useState, ChangeEvent } from 'react'
+import { Button, CircularProgress, TextField } from '@mui/material'
 import '../../types/app.d.ts'
+import CollapsibleTable from '../molecules/CollapsibleTable'
+import { IMangaSearcher } from '../../libs/IMangaSearcher'
+import { MangaSearcherFactory } from "../../libs/MangaSearcherFactory"
 import styles from './Searcher.module.scss'
 import settings from "../../public/settings.json"
-import { IMangaSearcher } from '../../libs/IMangaSearcher'
-import { KeyboardEvent, useState, ChangeEvent } from 'react'
 
 type SearcherInput = {
     siteSettings: SiteSettings[];
