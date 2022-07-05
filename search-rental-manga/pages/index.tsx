@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Searcher from '../components/organisms/Searcher'
 import styles from '../styles/Home.module.scss'
 import settings from '../public/settings.json'
+import { AdSenseAds } from '../components/atoms/AdsenseAds'
 
 const Home: NextPage = () => {
 
@@ -23,15 +24,8 @@ const Home: NextPage = () => {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
       </Head>
-      {/* <!-- もちぶろ用AdSense --> */}
-      <div className={styles.adsenseContainer}>
-        <script async={true} src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <ins className={`adsbygoogle ${styles.adsenseIns}`} data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-6645684605618765" data-ad-slot="7069550089"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({ });
-        </script>
-      </div>
       <main className={styles.main}>
+        <AdSenseAds></AdSenseAds>
         <h1 className={styles.title}>
           レンタルマンガ横断検索
         </h1>
