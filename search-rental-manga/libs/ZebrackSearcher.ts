@@ -12,7 +12,7 @@ export class ZebrackSearcher implements IMangaSearcher {
         if (rawData == null) return false;
         if (rawData.length !== 2) return false;
 
-        const MIN: string = '21';
+        const MIN: string = '20';
         const MAX: string = '7E';
         const MIN_VALUE: number = parseInt(MIN, 16);
         const MAX_VALUE: number = parseInt(MAX, 16);
@@ -52,8 +52,8 @@ export class ZebrackSearcher implements IMangaSearcher {
         if (rawData == null) return null;
         if (rawData.length !== 6) return null;
 
-        // if(this.CanDecode1ByteToAscii(rawData.substring(0, 2)) === true) return 1;
-        if(this.CanDecode3BytesToUtf8(rawData.substring(0, 6)) === true) return 3;
+        if (this.CanDecode3BytesToUtf8(rawData.substring(0, 6)) === true) return 3;
+        if (this.CanDecode1ByteToAscii(rawData.substring(0, 2)) === true) return 1;
         return 0;
     }
 
@@ -82,6 +82,7 @@ export class ZebrackSearcher implements IMangaSearcher {
                 id: mangaCount++
             };
 
+            let iSeek: number = 0;
             let bookId: number = 0;
             // read IDs one letter at a time from left to right.
             for (let idStringCounter: number = 0; idStringCounter < maxIdStringLength; idStringCounter += 2) {
@@ -89,37 +90,44 @@ export class ZebrackSearcher implements IMangaSearcher {
                 const numberValue: number = parseInt(valueToValidate, 16);
                 if (minNumberCharCode <= numberValue && numberValue <= maxNumberCharCode) {
                     bookId = (bookId * 10) + (numberValue - minNumberCharCode);
+                    iSeek += 2;
                 } else {
                     break;
                 }
             }
             // make a manga url using book ID.
             mangaItem.url = `${urlPrefix}${bookId}`;
-            console.log(bookId);
 
-            // read a manga title from raw data.
-            let titleRawData: string = oneBookData.substring(bookId.toString().length * 2);
-            let startIndex: number = -1;
-            let endIndex: number = -1;
-            for (let iSeek: number = 0; iSeek < titleRawData.length; iSeek += 2) {
-                if (this.CanDecode3Bytes(titleRawData.substring(iSeek, iSeek + 6)) === 0) continue;
-                startIndex = iSeek;
-                let prevJSeek = 0;
-                for (let jSeek: number = iSeek; jSeek < titleRawData.length;) {
-                    const bytesToRead: number | null = this.CanDecode3Bytes(titleRawData.substring(jSeek, jSeek + 6));
-                    if(bytesToRead == null) throw "there might be no data to decode.";
-                    // if (this.CanDecode3Bytes(titleRawData.substring(jSeek, jSeek + 6)) === true) continue;
-                    if(bytesToRead > 0) {
-                        prevJSeek = jSeek;
-                        jSeek += bytesToRead << 1;
-                    } else if (bytesToRead === 0) {
-                        endIndex = prevJSeek;
-                        break;
-                    }
-                }
-                break;
+            if (oneBookData.substring(iSeek, iSeek + 2).toUpperCase() !== "1A") throw "unknown error.";
+            iSeek += 2;
+            const tmpCode = oneBookData.substring(iSeek, iSeek + 2).toUpperCase();
+            const tmpCodeValue = parseInt(tmpCode, 16);
+            if (tmpCodeValue <= parseInt('80', 16)) {
+                iSeek += 2;
+            } else {
+                iSeek += 4;
             }
-            const title: string = Buffer.from(titleRawData.substring(startIndex, endIndex + 6), 'hex').toString('utf-8');
+
+            const titleStartIndex: number = iSeek;
+            let titleEndIndex: number = -1;
+            let prevISeek = iSeek;
+            for (; iSeek < oneBookData.length;) {
+                if(oneBookData.substring(iSeek, iSeek + 2) === "22") {
+                    titleEndIndex = iSeek;
+                    break;
+                }
+                const bytesToRead: number | null = this.CanDecode3Bytes(oneBookData.substring(iSeek, iSeek + 6));
+                if (bytesToRead == null) throw "there might be no data to decode.";
+                if (bytesToRead > 0) {
+                    prevISeek = iSeek;
+                    iSeek += bytesToRead << 1;
+                } else if (bytesToRead === 0) {
+                    titleEndIndex = iSeek;
+                    break;
+                }
+            }
+
+            const title: string = Buffer.from(oneBookData.substring(titleStartIndex, titleEndIndex), 'hex').toString('utf-8');
             mangaItem.title = title;
 
             output.push(mangaItem);
@@ -129,22 +137,6 @@ export class ZebrackSearcher implements IMangaSearcher {
 
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
         console.log(`start searching @ ${this.constructor.name}`);
-        // const newList: MangaItem[] = [];
-        // result.mangaList.forEach(mangaItem => {
-        //     // TODO: urlを書籍ページに飛べるように調整する。
-        //     const devidedUrl = mangaItem.url.split("/");
-        //     const mangaId = devidedUrl[5];
-        //     const newItem: MangaItem = {
-        //         title: mangaItem.title,
-        //         id: mangaItem.id,
-        //         url: `https://zebrack-comic.shueisha.co.jp/title/${mangaId}`
-        //     }
-        //     newList.push(newItem);
-        // });
-        // result.mangaList = newList;
-        // result.siteName = site.title;
-
-
 
         const result: SearchResult = {
             siteName: site.title,
