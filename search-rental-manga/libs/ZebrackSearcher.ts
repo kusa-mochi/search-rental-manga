@@ -7,6 +7,21 @@ import { IMangaSearcher } from "./IMangaSearcher";
 // the manga site renders the HTML dynamically but this tool has not supported to 
 // read it yet.
 export class ZebrackSearcher implements IMangaSearcher {
+    CanDecode1ByteToAscii(rawData: string): boolean {
+        console.log(rawData);
+        if (rawData == null) return false;
+        if (rawData.length !== 2) return false;
+
+        const MIN: string = '21';
+        const MAX: string = '7E';
+        const MIN_VALUE: number = parseInt(MIN, 16);
+        const MAX_VALUE: number = parseInt(MAX, 16);
+        const value: number = parseInt(rawData, 16);
+        const isValid: boolean = MIN_VALUE <= value && value <= MAX_VALUE;
+
+        return isValid;
+    }
+
     CanDecode3BytesToUtf8(rawData: string): boolean {
         console.log(rawData);
         if (rawData == null) return false;
@@ -32,19 +47,29 @@ export class ZebrackSearcher implements IMangaSearcher {
         return !areValid.includes(false);
     }
 
+    CanDecode3Bytes(rawData: string): number | null {
+        console.log(rawData);
+        if (rawData == null) return null;
+        if (rawData.length !== 6) return null;
+
+        // if(this.CanDecode1ByteToAscii(rawData.substring(0, 2)) === true) return 1;
+        if(this.CanDecode3BytesToUtf8(rawData.substring(0, 6)) === true) return 3;
+        return 0;
+    }
+
     ExtractMangaList(rawData: string): MangaItem[] {
         const output: MangaItem[] = [];
-        const urlPrefix = 'https://zebrack-comic.shueisha.co.jp/title/';
-        const minNumberCharCode = 48;
-        const maxNumberCharCode = 57;
+        const urlPrefix: string = 'https://zebrack-comic.shueisha.co.jp/title/';
+        const minNumberCharCode: number = 48;
+        const maxNumberCharCode: number = 57;
 
-        const data = rawData.toUpperCase();
+        const data: string = rawData.toUpperCase();
         // "garaku://title_detail?titleId=" in utf-8
         const bookIdPrefix: string = "676172616B753A2F2F7469746C655F64657461696C3F7469746C6549643D";
         const splitData: string[] = data.split(bookIdPrefix);
-        const maxIdStringLength = 10;
+        const maxIdStringLength: number = 10;
 
-        let mangaCount = -1;
+        let mangaCount: number = -1;
         splitData.forEach(oneBookData => {
             if (mangaCount === -1) {
                 mangaCount++;
@@ -59,7 +84,7 @@ export class ZebrackSearcher implements IMangaSearcher {
 
             let bookId: number = 0;
             // read IDs one letter at a time from left to right.
-            for (let idStringCounter = 0; idStringCounter < maxIdStringLength; idStringCounter += 2) {
+            for (let idStringCounter: number = 0; idStringCounter < maxIdStringLength; idStringCounter += 2) {
                 const valueToValidate: string = oneBookData.substring(idStringCounter, idStringCounter + 2);
                 const numberValue: number = parseInt(valueToValidate, 16);
                 if (minNumberCharCode <= numberValue && numberValue <= maxNumberCharCode) {
@@ -68,19 +93,34 @@ export class ZebrackSearcher implements IMangaSearcher {
                     break;
                 }
             }
-            // make a book url using book ID.
+            // make a manga url using book ID.
             mangaItem.url = `${urlPrefix}${bookId}`;
             console.log(bookId);
 
-            // TODO: extract a title from raw data.
-            let titleRawData = oneBookData.substring(bookId.toString().length * 2).split('22')[0];
-            for (let iSeek = 0; iSeek < titleRawData.length; iSeek += 2) {
-                if (this.CanDecode3BytesToUtf8(titleRawData.substring(iSeek, iSeek + 6)) === true) {
-                    const title = Buffer.from(titleRawData.substring(2), 'hex').toString('utf-8');
-                    mangaItem.title = title;
-                    break;
+            // read a manga title from raw data.
+            let titleRawData: string = oneBookData.substring(bookId.toString().length * 2);
+            let startIndex: number = -1;
+            let endIndex: number = -1;
+            for (let iSeek: number = 0; iSeek < titleRawData.length; iSeek += 2) {
+                if (this.CanDecode3Bytes(titleRawData.substring(iSeek, iSeek + 6)) === 0) continue;
+                startIndex = iSeek;
+                let prevJSeek = 0;
+                for (let jSeek: number = iSeek; jSeek < titleRawData.length;) {
+                    const bytesToRead: number | null = this.CanDecode3Bytes(titleRawData.substring(jSeek, jSeek + 6));
+                    if(bytesToRead == null) throw "there might be no data to decode.";
+                    // if (this.CanDecode3Bytes(titleRawData.substring(jSeek, jSeek + 6)) === true) continue;
+                    if(bytesToRead > 0) {
+                        prevJSeek = jSeek;
+                        jSeek += bytesToRead << 1;
+                    } else if (bytesToRead === 0) {
+                        endIndex = prevJSeek;
+                        break;
+                    }
                 }
+                break;
             }
+            const title: string = Buffer.from(titleRawData.substring(startIndex, endIndex + 6), 'hex').toString('utf-8');
+            mangaItem.title = title;
 
             output.push(mangaItem);
         });
