@@ -16,7 +16,7 @@ type HeadItem = {
 type MangaItem = {
     title: string;
     url: string;
-    id: number;
+    id: number; // this is used to render each item of manga list using React.
 }
 
 type BodyItem = {
