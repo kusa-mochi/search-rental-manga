@@ -31,7 +31,8 @@ const Searcher = (props: SearcherInput) => {
             siteName: site.title,
             number: 0,
             mangaList: [],
-            error: null
+            error: null,
+            omitted: false,
         });
     });
 
