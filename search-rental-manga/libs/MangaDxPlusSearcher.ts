@@ -16,7 +16,8 @@ export class MangaDxPlusSearcher implements IMangaSearcher {
         const result: SearchResult = {
             siteName: site.title,
             mangaList: [],
-            error: null
+            error: null,
+            omitted: false,
         };
         
         if(tmpResult.error != null) {
