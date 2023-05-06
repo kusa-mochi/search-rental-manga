@@ -8,7 +8,7 @@ import { IMangaSearcher } from "./IMangaSearcher";
 // read it yet.
 export class ZebrackSearcher implements IMangaSearcher {
     CanDecode1ByteToAscii(rawData: string): boolean {
-        console.log(rawData);
+        // console.log(rawData);
         if (rawData == null) return false;
         if (rawData.length !== 2) return false;
 
@@ -23,7 +23,7 @@ export class ZebrackSearcher implements IMangaSearcher {
     }
 
     CanDecode3BytesToUtf8(rawData: string): boolean {
-        console.log(rawData);
+        // console.log(rawData);
         if (rawData == null) return false;
         if (rawData.length !== 6) return false;
 
@@ -31,8 +31,8 @@ export class ZebrackSearcher implements IMangaSearcher {
         const MAXs: string[] = ['EF', 'BF', 'BF'];
         const MIN_VALUES: number[] = MINs.map(code => parseInt(code, 16));
         const MAX_VALUES: number[] = MAXs.map(code => parseInt(code, 16));
-        console.log(MIN_VALUES);
-        console.log(MAX_VALUES);
+        // console.log(MIN_VALUES);
+        // console.log(MAX_VALUES);
 
         const rawCode = [
             rawData.substring(0, 2),
@@ -40,15 +40,15 @@ export class ZebrackSearcher implements IMangaSearcher {
             rawData.substring(4, 6)
         ];
         const values: number[] = rawCode.map<number>(code => parseInt(code, 16));
-        console.log(values);
+        // console.log(values);
 
         const areValid: boolean[] = values.map((v, idx) => MIN_VALUES[idx] <= v && v <= MAX_VALUES[idx]);
-        console.log(areValid);
+        // console.log(areValid);
         return !areValid.includes(false);
     }
 
     CanDecode3Bytes(rawData: string): number | null {
-        console.log(rawData);
+        // console.log(rawData);
         if (rawData == null) return null;
         if (rawData.length !== 6) return null;
 
