@@ -141,7 +141,8 @@ export class ZebrackSearcher implements IMangaSearcher {
         const result: SearchResult = {
             siteName: site.title,
             mangaList: [],
-            error: null
+            error: null,
+            omitted: false,
         };
 
         await axios.post(settings.proxyUrl, {

@@ -63,7 +63,8 @@ const Searcher = (props: SearcherInput) => {
                         siteName: currentResult.siteName,
                         number: currentResult.mangaList.length,
                         mangaList: currentResult.mangaList,
-                        error: currentResult.error
+                        error: currentResult.error,
+                        omitted: currentResult.omitted,
                     };
                     newBodys.push(newBodyItem);
                 });

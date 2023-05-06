@@ -12,7 +12,8 @@ export class BasicSearcher {
         const output: SearchResult = {
             siteName: "",
             mangaList: [],
-            error: null
+            error: null,
+            omitted: false,
         };
 
         await axios.post(settings.proxyUrl, {

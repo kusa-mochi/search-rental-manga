@@ -24,12 +24,14 @@ type BodyItem = {
     number: number;
     mangaList: MangaItem[];
     error: string | null;
+    omitted: boolean;
 };
 
 type SearchResult = {
     siteName: string;
     mangaList: MangaItem[];
     error: string | null;
+    omitted: boolean;
 }
 
 export as namespace AppTypes;

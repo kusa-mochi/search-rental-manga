@@ -31,7 +31,7 @@ const CollapsibleTableRow = (props: CollapsibleTableRowInput) => {
                         <Chip className={`${styles.errorBadge} ${props.rowData.error != null ? "" : styles.hidden}`} label="エラー" size="small"></Chip>
                     </div>
                 </TableCell>
-                <TableCell>{props.rowData.mangaList.length}件</TableCell>
+                <TableCell>{props.rowData.mangaList.length}件{props.rowData.omitted ? "以上" : ""}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell className={styles.detail} colSpan={3}>

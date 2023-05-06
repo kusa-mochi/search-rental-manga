@@ -29,7 +29,8 @@ export class CycomiSearcher implements IMangaSearcher {
         const result: SearchResult = {
             siteName: site.title,
             mangaList: [],
-            error: null
+            error: null,
+            omitted: false,
         };
         results.forEach(res => {
             if(res.error != null) {

@@ -43,6 +43,7 @@ export class PiccomaSearcher implements IMangaSearcher {
             siteName: site.title,
             mangaList: [],
             error: null,
+            omitted: false,
         };
 
         // get a number of total pages.
@@ -57,6 +58,9 @@ export class PiccomaSearcher implements IMangaSearcher {
             if(nPage > this.MAX_PAGE) {
                 // load only the first MAX_PAGE pages.
                 nPage = this.MAX_PAGE;
+                result.omitted = true;
+            } else {
+                result.omitted = false;
             }
 
             // get each manga info.
