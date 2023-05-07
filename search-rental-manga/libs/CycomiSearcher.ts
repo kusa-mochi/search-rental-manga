@@ -1,30 +1,40 @@
 import "../types/app.d.ts";
 import { IMangaSearcher } from "./IMangaSearcher";
 import { BasicSearcher } from "./BasicSearcher";
+import axios from "axios";
+import settings from "../public/settings.json";
 
 export class CycomiSearcher implements IMangaSearcher {
+    readonly TARGET_BASE_URL: string = "https://web.cycomi.com/api/search/list/1?word=";
+
+    GetTargetUrl(query:string): string {
+        return `${this.TARGET_BASE_URL}${query}`;
+    }
+
+    async GetMangaList(targetUrl: string): Promise<MangaItem[]> {
+        // return value
+        const mangaList: MangaItem[] = [];
+        
+        const rawJsonData = await axios.post(settings.proxyUrl, {
+            url: targetUrl,
+        });
+
+        const titles = rawJsonData.data.data.titles;
+        console.log(titles);
+
+        titles.forEach((product: any) => {
+            mangaList.push({
+                id: product.titleId,
+                title: product.titleName,
+                url: `https://cycomi.com/title/${product.titleId}`,
+            });
+        });
+
+        return mangaList;
+    }
+
     async Search(query: string, site: SiteSettings): Promise<SearchResult> {
         console.log(`start searching @ ${this.constructor.name}`);
-        const searcher = new BasicSearcher();
-        const searchUrlPrefix: string = "https://cycomi.com/fw/cycomibrowser/title/serialization/";
-        const searchUrls: string[] = [];
-        for (let page = 0; page < 8; page++) {
-            searchUrls.push(`${searchUrlPrefix}${page}`);
-        }
-        const titleXPath = '//div[contains(@class, "section-content")]//p[@class="card-texts-title"]';
-        const urlXPath = '//div[contains(@class, "section-content")]/a/@href';
-        const urlPrefix = 'https://cycomi.com';
-
-        const results: SearchResult[] = await Promise.all<SearchResult[]>([
-            await searcher.Search(searchUrls[0], titleXPath, urlXPath, urlPrefix),
-            await searcher.Search(searchUrls[1], titleXPath, urlXPath, urlPrefix),
-            await searcher.Search(searchUrls[2], titleXPath, urlXPath, urlPrefix),
-            await searcher.Search(searchUrls[3], titleXPath, urlXPath, urlPrefix),
-            await searcher.Search(searchUrls[4], titleXPath, urlXPath, urlPrefix),
-            await searcher.Search(searchUrls[5], titleXPath, urlXPath, urlPrefix),
-            await searcher.Search(searchUrls[6], titleXPath, urlXPath, urlPrefix),
-            await searcher.Search(searchUrls[7], titleXPath, urlXPath, urlPrefix)
-        ]);
 
         const result: SearchResult = {
             siteName: site.title,
@@ -32,16 +42,11 @@ export class CycomiSearcher implements IMangaSearcher {
             error: null,
             omitted: false,
         };
-        results.forEach(res => {
-            if(res.error != null) {
-                return result;
-            }
-            res.mangaList.forEach(manga => {
-                if (manga.title.indexOf(query) !== -1) {
-                    result.mangaList.push(manga);
-                }
-            });
-        });
+
+        const targetUrl: string = this.GetTargetUrl(query);
+        const mangaList: MangaItem[] = await this.GetMangaList(targetUrl);
+        result.mangaList.push(...mangaList);
+        
         console.log(`fin searching @ ${this.constructor.name}`);
         return result;
     }
