@@ -25,6 +25,7 @@ type BodyItem = {
     mangaList: MangaItem[];
     error: string | null;
     omitted: boolean;
+    isSearching: boolean;
 };
 
 type SearchResult = {
