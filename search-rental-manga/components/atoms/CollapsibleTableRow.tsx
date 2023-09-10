@@ -28,10 +28,18 @@ const CollapsibleTableRow = (props: CollapsibleTableRowInput) => {
                 <TableCell>
                     <div className={styles.siteNameContainer}>
                         <div>{props.rowData.siteName}</div>
-                        <Chip className={`${styles.errorBadge} ${props.rowData.error != null ? "" : styles.hidden}`} label="エラー" size="small"></Chip>
+                        <Chip className={`${styles.errorBadge} ${props.rowData.error != null ? "" : styles.noDisplay}`} label="エラー" size="small"></Chip>
                     </div>
                 </TableCell>
                 <TableCell>{props.rowData.mangaList.length}件{props.rowData.omitted ? "以上" : ""}</TableCell>
+                {/* <div className={`${styles.searchingMask} ${props.rowData.isSearching === false ? styles.hidden : ""}`}></div> */}
+                <TableCell>
+                    {/* <div className={`${styles.overlayWrapper} ${props.rowData.isSearching === false ? styles.hidden : ""}`}>
+                        <div className={styles.overlayContent}>
+                            Overlay content
+                        </div>
+                    </div> */}
+                </TableCell>
             </TableRow>
             <TableRow>
                 <TableCell className={styles.detail} colSpan={3}>

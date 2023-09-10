@@ -1,7 +1,16 @@
 @import "../../styles/globalParams.scss";
 
+.summary {
+    position: relative;
+}
+
 .summary>* {
     border-bottom: none;
+}
+
+.summary td:last-child {
+    width: 0;
+    padding: 0;
 }
 
 .detail {
@@ -27,6 +36,34 @@
 	align-items: center;
 }
 
-.hidden {
+.noDisplay {
     display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+// .searchingMask {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba($color: #000000, $alpha: 0.3);
+// }
+
+.overlayWrapper {
+    // position: relative;
+}
+
+.overlayContent {
+    // visibility: hidden;
+    position: absolute;
+    // right: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#000000, 0.3);
 }
