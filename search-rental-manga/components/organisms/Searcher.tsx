@@ -29,7 +29,7 @@ const Searcher = (props: SearcherInput) => {
 
     const [isAnySearcherLoading, setIsAnySearcherLoading] = useState<boolean>(false);
 
-    const currentBodyItems: BodyItem[] = [];
+    let currentBodyItems: BodyItem[] = [];
     const sites: SiteSettings[] = settings.sites;
     sites.forEach(site => {
         currentBodyItems.push({
@@ -99,23 +99,24 @@ const Searcher = (props: SearcherInput) => {
             searcher.Search(query, site)
                 .then(
                     (result) => {
-                        // get index of a site
-                        // const siteIndex: number = settings.sites.findIndex((siteData) => siteData.id === site.id);
-                        // console.log("site name:" + site.title + ", site id:" + site.id);
-                        // console.log("siteIndex:" + siteIndex);
-
-                        currentBodyItems[iSite] = {
-                            siteName: result.siteName,
-                            number: result.mangaList.length,
-                            mangaList: result.mangaList,
-                            error: result.error,
-                            omitted: result.omitted,
-                            isSearching: false,
-                        };
+                        currentBodyItems = currentBodyItems.map((b, idx) => {
+                            if (idx === iSite) {
+                                return {
+                                    siteName: result.siteName,
+                                    number: result.mangaList.length,
+                                    mangaList: result.mangaList,
+                                    error: result.error,
+                                    omitted: result.omitted,
+                                    isSearching: false,
+                                };
+                            } else {
+                                return b;
+                            }
+                        });
 
                         setBodys(currentBodyItems);
 
-                        console.log(bodys);
+                        console.log(currentBodyItems.map((b) => b.isSearching));
 
                         // setIsLoading(
                         //     GenerateIsLoadingArrayUpdated(false, settings.sites.length, iSite)
@@ -131,16 +132,24 @@ const Searcher = (props: SearcherInput) => {
                     (err) => {
                         console.log(err);
 
-                        currentBodyItems[iSite] = {
-                            siteName: site.title,
-                            number: 0,
-                            mangaList: [],
-                            error: err,
-                            omitted: false,
-                            isSearching: false,
-                        };
+                        currentBodyItems = currentBodyItems.map((b, idx) => {
+                            if (idx === iSite) {
+                                return {
+                                    siteName: site.title,
+                                    number: 0,
+                                    mangaList: [],
+                                    error: err,
+                                    omitted: false,
+                                    isSearching: false,
+                                };
+                            } else {
+                                return b;
+                            }
+                        });
 
                         setBodys(currentBodyItems);
+
+                        console.log(currentBodyItems.map((b) => b.isSearching));
 
                         // setIsLoading(
                         //     GenerateIsLoadingArrayUpdated(false, settings.sites.length, iSite)
