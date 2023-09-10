@@ -32,13 +32,18 @@ const CollapsibleTableRow = (props: CollapsibleTableRowInput) => {
                     </div>
                 </TableCell>
                 <TableCell>{props.rowData.mangaList.length}件{props.rowData.omitted ? "以上" : ""}</TableCell>
-                {/* <div className={`${styles.searchingMask} ${props.rowData.isSearching === false ? styles.hidden : ""}`}></div> */}
                 <TableCell>
-                    {/* <div className={`${styles.overlayWrapper} ${props.rowData.isSearching === false ? styles.hidden : ""}`}>
+                    <div className={`${styles.overlayWrapper} ${props.rowData.isSearching === false ? styles.hidden : ""}`}>
                         <div className={styles.overlayContent}>
-                            Overlay content
+                        <div className={styles.progressContainer}>
+                            <span className={styles.progress}>
+                                <svg className={styles.progressSvg} viewBox="22 22 44 44">
+                                    <circle className={styles.progressCircle} cx="44" cy="44" r="20.2" fill="none" strokeWidth="4.0"></circle>
+                                </svg>
+                            </span>
                         </div>
-                    </div> */}
+                        </div>
+                    </div>
                 </TableCell>
             </TableRow>
             <TableRow>
